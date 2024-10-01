@@ -1,9 +1,11 @@
 BEGIN TRANSACTION;
+DROP TABLE IF EXISTS "regions";
 CREATE TABLE IF NOT EXISTS "regions" (
 	"region_id"	INTEGER NOT NULL,
 	"region_name"	text NOT NULL,
 	PRIMARY KEY("region_id" AUTOINCREMENT)
 );
+DROP TABLE IF EXISTS "countries";
 CREATE TABLE IF NOT EXISTS "countries" (
 	"country_id"	text NOT NULL,
 	"country_name"	text NOT NULL,
@@ -11,6 +13,7 @@ CREATE TABLE IF NOT EXISTS "countries" (
 	FOREIGN KEY("region_id") REFERENCES "regions"("region_id") ON DELETE CASCADE ON UPDATE CASCADE,
 	PRIMARY KEY("country_id" ASC)
 );
+DROP TABLE IF EXISTS "locations";
 CREATE TABLE IF NOT EXISTS "locations" (
 	"location_id"	INTEGER NOT NULL,
 	"street_address"	text,
@@ -18,16 +21,18 @@ CREATE TABLE IF NOT EXISTS "locations" (
 	"city"	text NOT NULL,
 	"state_province"	text,
 	"country_id"	INTEGER NOT NULL,
-	FOREIGN KEY("country_id") REFERENCES "countries"("country_id") ON DELETE CASCADE ON UPDATE CASCADE,
-	PRIMARY KEY("location_id" AUTOINCREMENT)
+	PRIMARY KEY("location_id" AUTOINCREMENT),
+	FOREIGN KEY("country_id") REFERENCES "countries"("country_id") ON DELETE CASCADE ON UPDATE CASCADE
 );
-CREATE TABLE IF NOT EXISTS "departments" (
+DROP TABLE IF EXISTS "departments";
+CREATE TABLE  IF NOT EXISTS "departments" (
 	"department_id"	INTEGER NOT NULL,
 	"department_name"	text NOT NULL,
 	"location_id"	INTEGER NOT NULL,
 	FOREIGN KEY("location_id") REFERENCES "locations"("location_id") ON DELETE CASCADE ON UPDATE CASCADE,
 	PRIMARY KEY("department_id" AUTOINCREMENT)
 );
+DROP TABLE IF EXISTS "jobs";
 CREATE TABLE IF NOT EXISTS "jobs" (
 	"job_id"	INTEGER NOT NULL,
 	"job_title"	text NOT NULL,
@@ -35,6 +40,8 @@ CREATE TABLE IF NOT EXISTS "jobs" (
 	"max_salary"	double NOT NULL,
 	PRIMARY KEY("job_id" AUTOINCREMENT)
 );
+
+DROP TABLE IF EXISTS "employees";
 CREATE TABLE IF NOT EXISTS "employees" (
 	"employee_id"	INTEGER NOT NULL,
 	"first_name"	text,
@@ -48,8 +55,8 @@ CREATE TABLE IF NOT EXISTS "employees" (
 	"department_id"	INTEGER NOT NULL,
 	FOREIGN KEY("job_id") REFERENCES "jobs"("job_id") ON DELETE CASCADE ON UPDATE CASCADE,
 	FOREIGN KEY("department_id") REFERENCES "departments"("department_id") ON DELETE CASCADE ON UPDATE CASCADE,
-	FOREIGN KEY("manager_id") REFERENCES "employees"("employee_id") ON DELETE CASCADE ON UPDATE CASCADE,
-	PRIMARY KEY("employee_id" AUTOINCREMENT)
+	PRIMARY KEY("employee_id" AUTOINCREMENT),
+	FOREIGN KEY("manager_id") REFERENCES "employees"("employee_id") ON DELETE CASCADE ON UPDATE CASCADE
 );
 INSERT INTO "regions" VALUES (1,'Europe');
 INSERT INTO "regions" VALUES (2,'Americas');
