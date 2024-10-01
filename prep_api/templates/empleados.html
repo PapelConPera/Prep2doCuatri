@@ -1,0 +1,16 @@
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+{% block header %}
+  <h1>{% block title %}Empleados{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+  {% for emp in empleado %}
+    <article class="empleado">
+      <header>
+        <div>
+          <h1>{{ emp['nombre'] }} -- {{ emp['apellido'] }}</h1>
+        </div>
+      </header>
+      <hr>
+  {% endfor %}
+{% endblock %}
