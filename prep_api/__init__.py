@@ -35,4 +35,7 @@ def create_app(test_config=None):
     from . import empleados
     app.register_blueprint(empleados.bp)
 
+    from . import paises
+    app.register_blueprint(paises.bp)
+
     return app
