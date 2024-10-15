@@ -1,0 +1,12 @@
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+{% block header %}
+<h1>{% block title %}{{ departamento['Title'] }}{% endblock %}</h1>
+{% endblock %} {% block content %}
+<ul>
+  {% for dep in departamento %}
+
+  <li>{{ dep['departamento'] }}</li>
+
+  {% endfor %}
+</ul>
+{% endblock %}
