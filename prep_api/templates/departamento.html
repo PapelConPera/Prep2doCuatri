@@ -1,0 +1,21 @@
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+{% block header %}
+<table> 
+  <head> 
+    <div class="title">
+    <h1>{% block title %}Departamentos{% endblock %}</h1>
+    </div>
+  </head>
+{% endblock %}
+
+{% block content %}
+  <body>
+    {% for dep in departamentos %}
+  <tr>
+    <td>{{ dep['departamentos'] }}</td>
+  </tr>
+
+    {% endfor %}
+  </body>
+</table>
+{% endblock %}
