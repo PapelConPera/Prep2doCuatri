@@ -1,12 +1,16 @@
 <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
 {% block header %}
+<table>
 <h1>{% block title %}{{ departamento['Title'] }}{% endblock %}</h1>
 {% endblock %} {% block content %}
-<ul>
-  {% for dep in departamento %}
+<h1>Departamento: </h1>
+  <h1>{{ departamento['departamentos'] }}</h1>
+  <br>
+    <tr>
+      {% for emp in empleado %}
+      <td>{{ emp['first_name'] }}</td>
 
-  <li>{{ dep['departamento'] }}</li>
-
-  {% endfor %}
-</ul>
+      {% endfor %}
+  </tr>
+</table> 
 {% endblock %}
