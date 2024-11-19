@@ -21,14 +21,22 @@ def index():
 def detalle(id):
     db = get_db()
     consulta = """
-            SELECT first_name, last_name, employee_id
+            SELECT first_name, last_name, employee_id, department_id
             FROM employees
-            WHERE employee_id = ?"""
+            WHERE department_id = ?"""
 
     resultado = db.execute(consulta, (id,))
     lista_empleado= resultado.fetchall()
 
+    consulta1 = """
+        SELECT department_name as departamentos, department_id
+        FROM departments
+        WHERE department_id = ?"""
 
-    pagina = render_template('detalleEmpleados.html', empleado = lista_empleado)
+    resultado = db.execute(consulta1, (id,))
+    lista_departamentos = resultado.fetchone()
+
+
+    pagina = render_template('detalleEmpleados.html', empleado=lista_empleado, departamento=lista_departamentos)
 
     return pagina

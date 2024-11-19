@@ -1,36 +1,21 @@
 <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
 {% block header %}
-<table>  
-<head> 
-    <div class="title">
+  <div class="title">
     <h1>{% block title %}Empleados{% endblock %}</h1>
-    </div>
-  </head>
+  </div>
 {% endblock %}
 
 {% block content %}
-  <body>
-    
+  <div class="empleados-list">
     {% for emp in empleado %}
-    <tr>
-    <ul>
-      
-    <li>
-      <a
-        class="action"
-        href="{{ url_for('empleados.detalle', id=emp['employee_id']) }}"
-      >
-      {{ emp['first_name'] }}
-      {{ emp['last_name'] }}</a
-      >
-    
-    </li>
-  
+      <div class="empleado">
+        <a class="action" href="{{ url_for('empleados.detalle', id=emp['employee_id']) }}">
+          {{ emp['first_name'] }} {{ emp['last_name'] }}
+        </a>
+      </div>
     {% endfor %}
-  
-  </ul>
-</tr>
-  </body>
-</table>
+  </div>
 {% endblock %}
+
 
