@@ -23,7 +23,7 @@ def detalle(id):
     consulta = """
             SELECT first_name, last_name, employee_id, department_id
             FROM employees
-            WHERE department_id = ?"""
+            WHERE department_id  = ?"""
 
     resultado = db.execute(consulta, (id,))
     lista_empleado= resultado.fetchall()
