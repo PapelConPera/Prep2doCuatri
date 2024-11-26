@@ -31,7 +31,7 @@ def detalle(id):
 
     # revisar si puedo mostrar algun datos relevante mas
     # no todo, porque eso va a estar en el detalle,
-    # pero por ejemplo el tipo de trabajo que hace
+    # pero por ejemplo el tipo de trabajo que hace (job_title)
     consulta2 = """  
         SELECT first_name , last_name , employee_id
         FROM employees
