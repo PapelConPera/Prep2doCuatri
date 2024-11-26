@@ -20,6 +20,7 @@ def index():
 @bp.route('/<int:id>/')
 def detalle(id):
     db = get_db()
+    #agregar los salarios y los emails
     consulta = """
             SELECT first_name, last_name, employee_id, department_id, phone_number
             FROM employees

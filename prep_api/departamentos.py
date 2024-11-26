@@ -19,20 +19,21 @@ def index():
 @bp.route('/detalle/<int:id>/')
 def detalle(id):
     db = get_db()
+    # en esta consulta faltaria agregar el join para traer
+    # los datos de la direccion (calle, altura, codigo postal, ciudad, etc.)
     consulta1 = """
         SELECT department_name , department_id
         FROM departments
         WHERE department_id = ?"""
 
     resultado = db.execute(consulta1, (id,))
-    lista_departamentos = resultado.fetchone()
+    detalle_departamento = resultado.fetchone()
 
+    # revisar si puedo mostrar algun datos relevante mas
+    # no todo, porque eso va a estar en el detalle,
+    # pero por ejemplo el tipo de trabajo que hace
     consulta2 = """  
-<<<<<<< HEAD
         SELECT first_name , last_name , employee_id
-=======
-        SELECT first_name as nombre, last_name as apellido, employee_id
->>>>>>> dd66c0d7544f06affdcd1d2a98e2f114f3245d63
         FROM employees
         WHERE department_id = ?"""
     
@@ -40,6 +41,6 @@ def detalle(id):
     lista_empleados = resultado2.fetchall()
     
 
-    pagina = render_template('detalleDeparta.html', departamento=lista_departamentos, empleado = lista_empleados)
+    pagina = render_template('detalleDeparta.html', departamento=detalle_departamento, empleados = lista_empleados)
 
     return pagina
