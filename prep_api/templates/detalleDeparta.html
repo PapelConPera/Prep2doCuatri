@@ -3,7 +3,7 @@
 <table>
 <h1>{% block title %}{{ departamento['Title'] }}{% endblock %}</h1>
 {% endblock %}
-<a href="{{ url_for('departamento.html') }}">{{ departamento['Title'] }}</a>
+<a href="{{ url_for('detalleDeparta') }}">{{ departamento['Title'] }}</a>
 {% block content %}
 <h1>Departamento: </h1>
   <h1>{{ departamento['departamentos'] }}</h1>

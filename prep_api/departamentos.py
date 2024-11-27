@@ -28,11 +28,7 @@ def detalle(id):
     lista_departamentos = resultado.fetchone()
 
     consulta2 = """  
-<<<<<<< HEAD
         SELECT first_name , last_name , employee_id
-=======
-        SELECT first_name as nombre, last_name as apellido, employee_id
->>>>>>> dd66c0d7544f06affdcd1d2a98e2f114f3245d63
         FROM employees
         WHERE department_id = ?"""
     
