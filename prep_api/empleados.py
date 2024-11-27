@@ -22,9 +22,10 @@ def detalle(id):
     db = get_db()
     #agregar los salarios y los emails
     consulta = """
-            SELECT first_name, last_name, employee_id, department_id, phone_number
-            FROM employees
-            WHERE department_id  = ?"""
+        SELECT e.first_name, e.last_name, e.employee_id, e.department_id, e.phone_number, e.salary, e.hire_date, d.department_name
+        FROM employees e
+        JOIN departments d ON e.department_id = d.department_id
+        WHERE e.employee_id = ? """
 
     resultado = db.execute(consulta, (id,))
     empleado= resultado.fetchone()
