@@ -22,9 +22,10 @@ def detalle(id):
     # en esta consulta faltaria agregar el join para traer
     # los datos de la direccion (calle, altura, codigo postal, ciudad, etc.)
     consulta1 = """
-        SELECT department_name , department_id
-        FROM departments
-        WHERE department_id = ?"""
+        SELECT d.department_name, d.department_id, l.street_address, l.postal_code, l.city, l.state_province
+        FROM departments d
+        JOIN locations l ON d.location_id = l.location_id
+        WHERE d.department_id = ?"""
 
     resultado = db.execute(consulta1, (id,))
     detalle_departamento = resultado.fetchone()

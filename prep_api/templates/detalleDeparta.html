@@ -4,18 +4,39 @@
 {% endblock %}
 {% block content %}
 <h1>Departamento: {{ departamento['department_name'] }}</h1>
+<h3>Calle y direccion: {{ departamento['street_address'] }}</h3>
+<h3>Codio postal: {{ departamento['postal_code'] }}</h3>
+<h3>Ciudad: {{ departamento['city'] }}</h3>
+<h3>Provincia y estado: {{ departamento['state_province'] }}</h3>
 <br>
 
 <table>
-  <th>Nombre</th><th>Apellido</th><th>Trabajo</th>
-    {% for emp in empleados %} 
+  <thead>
     <tr>
-      <td>{{ emp['first_name'] }}</td>
-      <td>{{ emp['last_name'] }}</td>
+      <th>Nombre</th>
+      <th>Apellido</th>
+      <th>Trabajo</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for emp in empleados %}
+    <tr>
+      <td>
+        <a class="action" href="{{ url_for('empleados.detalle', id=emp['employee_id']) }}">
+          {{ emp['first_name'] }}
+        </a>
+      </td>
+      <td>
+        <a class="action" href="{{ url_for('empleados.detalle', id=emp['employee_id']) }}">
+          {{ emp['last_name'] }}
+        </a>
+      </td>
       <td>{{ emp['job_title'] }}</td>
-  </tr>
+    </tr>
     {% endfor %}
-</table> 
+  </tbody>
+</table>
+
 {% endblock %}
 
 
