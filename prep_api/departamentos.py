@@ -33,9 +33,10 @@ def detalle(id):
     # no todo, porque eso va a estar en el detalle,
     # pero por ejemplo el tipo de trabajo que hace (job_title)
     consulta2 = """  
-        SELECT first_name , last_name , employee_id
-        FROM employees
-        WHERE department_id = ?"""
+     SELECT e.first_name, e.last_name, e.employee_id, j.job_title
+     FROM employees e
+     JOIN jobs j ON e.job_id = j.job_id
+     WHERE e.department_id = ? """
     
     resultado2 = db.execute(consulta2, (id,))
     lista_empleados = resultado2.fetchall()

@@ -2,20 +2,17 @@
 {% block header %}
 <h1>{% block title %}{{ departamento['Title'] }}{% endblock %}</h1>
 {% endblock %}
-<<<<<<< HEAD
-<a href="{{ url_for('detalleDeparta') }}">{{ departamento['Title'] }}</a>
-=======
->>>>>>> c32df89928100c6ac6abe29ba309002650b61ce0
 {% block content %}
 <h1>Departamento: {{ departamento['department_name'] }}</h1>
 <br>
 
 <table>
-  <th>Nombre</th><th>Apellido</th>
-    {% for emp in empleados %}
+  <th>Nombre</th><th>Apellido</th><th>Trabajo</th>
+    {% for emp in empleados %} 
     <tr>
       <td>{{ emp['first_name'] }}</td>
       <td>{{ emp['last_name'] }}</td>
+      <td>{{ emp['job_title'] }}</td>
   </tr>
     {% endfor %}
 </table> 
